@@ -12,6 +12,9 @@ class RestaurantsController < ApplicationController
   def show
   end
 
+  def homepage
+    @restaurants = Restaurant.all.order("created_at desc")
+  end
   # GET /restaurants/new
   def new
     @restaurant = Restaurant.new
