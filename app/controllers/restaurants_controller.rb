@@ -13,7 +13,10 @@ class RestaurantsController < ApplicationController
   end
 
   def homepage
-    @restaurants = Restaurant.all.order("created_at desc")
+    @restaurants = Restaurant.all.order("name")
+    @categories = Category.all
+    @restaurants = Dish.all.where(category: params[:category_id]) unless params[:category_id].blank?
+    @restaurants = Dish.all.where("UPPER(name) like ?" , "%#{params[:search_term].to_s.upcase}%") unless params[:search_term].blank?
   end
   # GET /restaurants/new
   def new

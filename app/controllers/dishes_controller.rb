@@ -12,9 +12,6 @@ class DishesController < ApplicationController
   def show
   end
 
-  def homepage
-    @dishes = Dish.all.order("created_at desc")
-  end
   # GET /dishes/new
   def new
     @dish = Dish.new

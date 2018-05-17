@@ -4,16 +4,12 @@ class IngredientsController < ApplicationController
   # GET /ingredients
   # GET /ingredients.json
   def index
-    @ingredients = Ingredient.all
+    @ingredients = Ingredient.all.order("description")
   end
 
   # GET /ingredients/1
   # GET /ingredients/1.json
   def show
-  end
-
-  def homepage
-    @ingredients = Ingredient.all.order("created_at desc")
   end
 
   # GET /ingredients/new

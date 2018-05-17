@@ -15,5 +15,22 @@
   <%= @restaurant.address %>
 </p>
 
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %>
+<br>
+
+<h3><b>Pratos</b></h3>
+
+<div class="pratos">
+  <% @restaurant.dishes.each do |dish| %>
+    <hr>
+    <h4><b><%= dish.category.description %></b></h4>
+    <h4><%= dish.name %></h4>
+    <h4> Ingredients:
+      <% dish.ingredients.each do |ingredient| %>
+        <%= ingredient.description + "."%>
+      <% end %>
+    </h4>
+    <h4>Price: R$<%= dish.price %>0</h4>
+    <h4>Time to prepare: <%= postTime_to_prepare dish.time_to_prepare %></h4>
+  <% end %>
+  <hr>
+</div>
