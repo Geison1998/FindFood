@@ -20,7 +20,7 @@
 <h3><b>Pratos</b></h3>
 
 <div class="pratos">
-  <% @restaurant.dishes.each do |dish| %>
+  <% @restaurant.dishes.order(:name).each do |dish| %>
     <hr>
     <h4><b><%= dish.category.description %></b></h4>
     <h4><%= dish.name %></h4>

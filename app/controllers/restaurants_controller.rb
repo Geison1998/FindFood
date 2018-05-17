@@ -14,9 +14,8 @@ class RestaurantsController < ApplicationController
 
   def homepage
     @restaurants = Restaurant.all.order("name")
-    @categories = Category.all
-    @restaurants = Dish.all.where(category: params[:category_id]) unless params[:category_id].blank?
-    @restaurants = Dish.all.where("UPPER(name) like ?" , "%#{params[:search_term].to_s.upcase}%") unless params[:search_term].blank?
+    @restaurants = Restaurant.joins(:dishes).where(dishes: {category_id: params[:category_id]}).order("name").uniq unless params[:category_id].blank?
+    @restaurants = Restaurant.joins(:dishes).where("UPPER(dishes.name) like ?" , "%#{params[:search_term].to_s.upcase}%").uniq unless params[:search_term].blank?
   end
   # GET /restaurants/new
   def new
